@@ -1,6 +1,6 @@
 module github.com/dapr/components-contrib/tests/e2e/pubsub/jetstream
 
-go 1.19
+go 1.25.0
 
 require (
 	github.com/dapr/components-contrib v1.5.1
@@ -16,8 +16,8 @@ require (
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
-	golang.org/x/crypto v0.4.0 // indirect
-	golang.org/x/sys v0.3.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
 )
 
 replace github.com/dapr/components-contrib => ../../../../
