@@ -159,7 +159,7 @@ jobs:
 
     - name: Create PR comment
       if: env.PR_NUMBER != ''
-      uses: artursouza/sticky-pull-request-comment@v2.2.0
+      uses: artursouza/sticky-pull-request-comment@39c5b5dc7717447d0cba270cd115037d32d28443 # v2.2.0
       with:
         header: ${{ github.run_id }}
         number: ${{ env.PR_NUMBER }}
@@ -212,7 +212,7 @@ jobs:
         fi
 
     - name: Check out code onto GOPATH
-      uses: actions/checkout@v3
+      uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
       with:
         repository: ${{ env.CHECKOUT_REPO }}
         ref: ${{ env.CHECKOUT_REF }}
@@ -222,7 +222,7 @@ jobs:
         export TEST_OUTPUT_FILE_PREFIX=$GITHUB_WORKSPACE/test_report
         echo "TEST_OUTPUT_FILE_PREFIX=$TEST_OUTPUT_FILE_PREFIX" >> $GITHUB_ENV
 
-    - uses: Azure/login@v1
+    - uses: Azure/login@cb79c773a3cfa27f31f25eb3f677781210c9ce3d # v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
       if: matrix.required-secrets != ''
@@ -281,11 +281,11 @@ jobs:
         echo "CURRENT_TIME=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
 
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v2
+      uses: hashicorp/setup-terraform@633666f66e0061ca3b725c73b2ec20cd13a8fdd1 # v2
       if: matrix.terraform-dir != ''
 
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838 # v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
@@ -341,7 +341,7 @@ jobs:
       if: contains(matrix.component, 'temporal')
 
     - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.3.0
+      uses: supercharge/mongodb-github-action@310bd1bbeb878d9de3e54ee492cbd9643b1e8875 # 1.3.0
       with:
         mongodb-version: 4.2
         mongodb-replica-set: test-rs
@@ -393,7 +393,7 @@ jobs:
 
     - name: Install Node.js ${{ env.NODE_VERSION }}
       if: contains(matrix.component, 'cloudflare')
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610 # v3
       with:
         node-version: ${{ env.NODE_VERSION }}
 
@@ -450,7 +450,7 @@ jobs:
       if: contains(matrix.component, 'mysql.mariadb')
 
     - name: Start KinD
-      uses: helm/kind-action@v1.4.0
+      uses: helm/kind-action@9e8295d178de23cbfbd8fa16cf844eec1d773a07 # v1.4.0
       if: contains(matrix.component, 'kubernetes')
 
     - name: Start postgresql
@@ -498,7 +498,7 @@ jobs:
         echo "NAMESPACE=default" >> $GITHUB_ENV
 
     - name: Set up Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@be3c94b385c4f180051c996d336f57a34c397495 # v3
       with:
         go-version: '^1.19'
 
@@ -624,7 +624,7 @@ jobs:
         fi
 
     - name: Upload result files
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@ff15f0306b3f739f7b6fd43fb5d26cd321bd4de5 # v3
       if: always()
       with:
         name: result_files
@@ -634,7 +634,7 @@ jobs:
     # Upload logs for test analytics to consume
     - name: Upload test results
       if: always()
-      uses: actions/upload-artifact@master
+      uses: actions/upload-artifact@0c366cb4fc8897159c94880f94b55bc716ad6a66 # master
       with:
         name: ${{ matrix.component }}_conformance_test
         path: ${{ env.TEST_OUTPUT_FILE_PREFIX }}_conformance.*
@@ -658,7 +658,7 @@ jobs:
 
       - name: Download test result artifact
         if: always() && env.PR_NUMBER != ''
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # v3
         continue-on-error: true
         id: testresults
         with:
@@ -668,7 +668,7 @@ jobs:
       - name: Build message
         if: always() && env.PR_NUMBER != ''
         # Abusing of the github-script action to be able to write this in JS
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
         with:
           script: |
             const prComponents = ('${{ needs.generate-matrix.outputs.pr-components }}' && JSON.parse('${{ needs.generate-matrix.outputs.pr-components }}')) || []
@@ -762,7 +762,7 @@ jobs:
 
       - name: Replace PR comment
         if: env.PR_NUMBER != ''
-        uses: artursouza/sticky-pull-request-comment@v2.2.0
+        uses: artursouza/sticky-pull-request-comment@39c5b5dc7717447d0cba270cd115037d32d28443 # v2.2.0
         with:
           header: ${{ github.run_id }}
           number: ${{ env.PR_NUMBER }}

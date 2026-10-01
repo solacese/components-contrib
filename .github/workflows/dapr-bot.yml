@@ -27,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3 # required to make the script available for next step
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3 # required to make the script available for next step
       - name: Issue analyzer
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
         with:
           github-token: ${{secrets.DAPR_BOT_TOKEN}}
           script: |
