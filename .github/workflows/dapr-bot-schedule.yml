@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26 # v3
       - name: Install dependencies
         run: pip install PyGithub
       - name: Automerge and update
@@ -40,7 +40,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Prune Stale
-      uses: actions/stale@v7.0.0
+      uses: actions/stale@6f05e4244c9a0b2ed3401882b05d701dd0a7289b # v7.0.0
       with:
         repo-token: ${{ github.token }}
         days-before-stale: 30
