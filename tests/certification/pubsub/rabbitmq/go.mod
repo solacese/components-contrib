@@ -9,7 +9,7 @@ require (
 	github.com/dapr/dapr v1.9.5
 	github.com/dapr/go-sdk v1.6.0
 	github.com/dapr/kit v0.0.3
-	github.com/rabbitmq/amqp091-go v1.5.0
+	github.com/rabbitmq/amqp091-go v1.13.0
 	github.com/stretchr/testify v1.8.1
 	go.uber.org/multierr v1.8.0
 )
